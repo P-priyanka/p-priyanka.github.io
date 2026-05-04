@@ -295,36 +295,41 @@
     <script src="https://smtpjs.com/v3/smtp.js"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script>
-        var btn = document.getElementById("btt");
-        btn.addEventListener('click', function(e){
-            e.preventDefault()
-            var name = document.getElementById('name').value;
-            var email = document.getElementById('email').value;
-            var contact = document.getElementById('number').value;
-            var subject = document.getElementById('subject').value;
-            var message = document.getElementById('msg').value;
-            if(name!= "" && email!="" && contact!="" && subject!="" && message!="") {
-            Email.send({
-                SecureToken : "d0099561-273e-4b25-8867-894f6181c44a",
-                To : 'priyankasingh8568@gmail.com',
-                From : "priyankasingh8568@gmail.com",
-                Subject : subject,
-                Body : 'name: '+name +'<br/> email: ' + email + '<br/> Contact: ' +contact + '<br/> Message: ' + message
-                }).then(
-                message => {if (message=="OK") {
-                    swal("Thank You!", "Your message is received !", "success");
-                    document.querySelector("form").reset();
-                }
-                else{
-                    swal("Something went wrong", "Please Re-Check !", "error");
+       document.querySelector("form").addEventListener("submit", function(e){
+    e.preventDefault();
 
-                }
-            });
+    var name = document.getElementById('name').value.trim();
+    var email = document.getElementById('email').value.trim();
+    var contact = document.getElementById('number').value.trim();
+    var subject = document.getElementById('subject').value.trim();
+    var message = document.getElementById('msg').value.trim();
+
+    if(name && email && contact && subject && message) {
+
+        Email.send({
+            SecureToken : "d0099561-273e-4b25-8867-894f6181c44a",
+            To : 'priyankasingh8568@gmail.com',
+            From : "priyankasingh8568@gmail.com",
+            Subject : subject,
+            Body : `Name: ${name}<br>Email: ${email}<br>Contact: ${contact}<br>Message: ${message}`
+        }).then(function(response) {
+
+            if (response === "OK") {
+                swal("Thank You!", "Your message is received!", "success");
+                document.querySelector("form").reset();
+            } else {
+                swal("Something went wrong", "Please try again!", "error");
             }
-            else if (name== "" || email=="" || contact=="" || subject=="" || message==""){
-                swal("Enter all fields to continue", "Fill all data", "warning");
-            }
+
+        }).catch(function(error){
+            console.error(error);
+            swal("Error", "Email failed to send!", "error");
         });
+
+    } else {
+        swal("Missing Fields", "Please fill all fields", "warning");
+    }
+    });
     </script>
     <script src="js/script.js"></script>
 </body>
