@@ -7,11 +7,10 @@
     <meta name="viewport" content="width=device-width , initial-scale=1.0">
     <title> Priyanka Portfolio </title>
     <link rel="stylesheet" href="css/style.css">
+    <!-- box icons -->
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
-
-<!-- box icons -->
-<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-
+    
 <body>
     <header class="header">
         <a href="#" class="logo">Priyanka.<span class="animate" style="--i:1;"></span></a>
@@ -304,12 +303,12 @@
             var contact = document.getElementById('number').value;
             var subject = document.getElementById('subject').value;
             var message = document.getElementById('msg').value;
-            if(name!= "" && email!="" && contact!="" && Subject!="" && message!="") {
+            if(name!= "" && email!="" && contact!="" && subject!="" && message!="") {
             Email.send({
                 SecureToken : "d0099561-273e-4b25-8867-894f6181c44a",
                 To : 'priyankasingh8568@gmail.com',
                 From : "priyankasingh8568@gmail.com",
-                Subject : Subject,
+                Subject : subject,
                 Body : 'name: '+name +'<br/> email: ' + email + '<br/> Contact: ' +contact + '<br/> Message: ' + message
                 }).then(
                 message => {if (message=="OK") {
@@ -322,10 +321,10 @@
                 }
             });
             }
-            else if (name== "" || email=="" || contact=="" || Subject=="" || message==""){
+            else if (name== "" || email=="" || contact=="" || subject=="" || message==""){
                 swal("Enter all fields to continue", "Fill all data", "warning");
             }
-        })
+        });
     </script>
     <script src="js/script.js"></script>
 </body>
