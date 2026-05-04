@@ -146,8 +146,8 @@
                     <div class="education-content">
                         <div class="content">
                             <div class="year"><i class='bx bxs-calendar' ></i>Feb 2020-Jul 2020</div>
-                            <h3>Junior Software Developer | Gurgram, India</h3>
-                            <p>Ramboll</p>
+                            <h3>Junior Software Developer</h3>
+                            <p>Ramboll | Gurgram, India</p>
                         </div>
                     </div>
                     <span class="animate scroll" style="--i:6;"></span>
@@ -255,7 +255,7 @@
             </div>
             <div class="input-box">
                 <div class="input-field">
-                    <input type="number" id="number" placeholder="Mobile Number" required>
+                    <input type="tel" id="number" placeholder="Mobile Number" required>
                     <span class="focus"></span>
                 </div>
                 <div class="input-field">
@@ -302,9 +302,9 @@
             var name = document.getElementById('name').value;
             var email = document.getElementById('email').value;
             var contact = document.getElementById('number').value;
-            var Subject = document.getElementById('subject').value;
+            var subject = document.getElementById('subject').value;
             var message = document.getElementById('msg').value;
-            if(name!= "" && email!="" && contact!="" && Subject!="" && message!="")
+            if(name!= "" && email!="" && contact!="" && Subject!="" && message!="") {
             Email.send({
                 SecureToken : "d0099561-273e-4b25-8867-894f6181c44a",
                 To : 'priyankasingh8568@gmail.com',
@@ -314,18 +314,16 @@
                 }).then(
                 message => {if (message=="OK") {
                     swal("Thank You!", "Your message is received !", "success");
+                    document.querySelector("form").reset();
                 }
                 else{
                     swal("Something went wrong", "Please Re-Check !", "error");
 
                 }
+            });
             }
-            );
             else if (name== "" || email=="" || contact=="" || Subject=="" || message==""){
                 swal("Enter all fields to continue", "Fill all data", "warning");
-            }
-            else{
-            this.form.reset();
             }
         })
     </script>
