@@ -311,26 +311,33 @@
             To : 'priyankasingh8568@gmail.com',
             From : email,
             Subject : subject,
-            Body : `Name: ${name}<br>Email: ${email}<br>Contact: ${contact}<br>Message: ${message}`
-        }).then(function(response) {
+            Body : `
+                <b>Name:</b> ${name}<br/>
+                <b>Email:</b> ${email}<br/>
+                <b>Contact:</b> ${contact}<br/>
+                <b>Message:</b> ${message}
+            `
+        })
+        .then(function(response) {
+            console.log("SMTP Response:", response);
 
             if (response === "OK") {
-                swal("Thank You!", "Your message is received!", "success");
+                swal("Thank You!", "Your message has been sent successfully!", "success");
                 document.querySelector("form").reset();
             } else {
-                swal("Something went wrong", "Please try again!", "error");
+                swal("Error", "Failed to send email: " + response, "error");
             }
-
-        }).catch(function(error){
-            console.error(error);
-            swal("Error", "Email failed to send!", "error");
+        })
+        .catch(function(error) {
+            console.error("SMTP Error:", error);
+            swal("Error", "Something went wrong while sending email!", "error");
         });
 
     } else {
-        swal("Missing Fields", "Please fill all fields", "warning");
+        swal("Missing Fields", "Please fill all fields before submitting.", "warning");
     }
-    });
-    </script>
-    <script src="js/script.js"></script>
+});
+</script>
+<script src="js/script.js"></script>
 </body>
 </html>
